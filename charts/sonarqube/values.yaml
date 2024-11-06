@@ -126,7 +126,7 @@ sonarWebContext: ""
 
 # Install the nginx ingress helm chart
 ingress-nginx:
-  enabled: false
+  enabled: true
 
   # You can add here any values from the official nginx ingress chart
   # controller:
@@ -186,11 +186,11 @@ affinity: {}
 # taint a node with the following command to mark it as not schedulable for new pods
 # kubectl taint nodes <node> sonarqube=true:NoSchedule
 # The following statement will tolerate this taint and as such reverse a node for sonarqube
-tolerations: []
-#  - key: "sonarqube"
-#    operator: "Equal"
-#    value: "true"
-#    effect: "NoSchedule"
+tolerations:
+- key: "sonarqube"
+  operator: "Equal"
+  value: "true"
+  effect: "NoSchedule"
 
 # Node labels for pod assignment
 # Ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -450,7 +450,7 @@ resources:
     ephemeral-storage: 1536M
 
 persistence:
-  enabled: false
+  enabled: true
   ## Set annotations on pvc
   annotations: {}
 
